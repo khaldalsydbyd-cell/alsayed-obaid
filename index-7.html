@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مطعم السيد عبيد | القائمة والعروضات</title>
+<meta name="description" content="مطعم السيد عبيد - مشويات وشاورما وفروج بروستد، مذاق أصيل منذ سنوات">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1B140F;
+    --charcoal-2:#241A12;
+    --ember:#C1440E;
+    --ember-dark:#9C380B;
+    --gold:#C99A3C;
+    --cream:#FBF3E7;
+    --cream-dark:#EFE2CB;
+    --ink:#2A211B;
+    --ink-soft:#6B5C4C;
+    --line: rgba(42,33,27,.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:'Tajawal',sans-serif; line-height:1.6;
+  }
+  h1,h2,h3,.display{ font-family:'El Messiri',serif; margin:0; }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  section{padding:88px 0;}
+  .eyebrow{color:var(--ember); font-weight:700; font-size:.95rem;}
+
+  /* NAV */
+  header.site-nav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(27,20,15,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav-inner{max-width:1080px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{color:var(--cream); font-family:'El Messiri',serif; font-size:1.3rem; font-weight:700;}
+  .brand span{color:var(--gold);}
+  nav.links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  nav.links a{color:var(--cream); text-decoration:none; font-size:.98rem; opacity:.88;}
+  nav.links a:hover{opacity:1; color:var(--gold);}
+  .nav-toggle{display:none; background:none; border:0; color:var(--cream); font-size:1.6rem; cursor:pointer;}
+  @media(max-width:760px){
+    nav.links{position:absolute; inset-inline:0; top:100%; background:var(--charcoal); flex-direction:column; padding:18px 24px; gap:16px; display:none;}
+    nav.links.open{display:flex;}
+    .nav-toggle{display:block;}
+  }
+
+  /* HERO */
+  .hero{
+    position:relative; overflow:hidden; background:var(--charcoal); color:var(--cream);
+    padding:120px 0 100px; text-align:center;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 75% 20%, rgba(193,68,14,.45), transparent 55%),
+               radial-gradient(circle at 20% 90%, rgba(201,154,60,.25), transparent 50%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; max-width:720px; margin:0 auto; padding:0 24px;}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.4rem); line-height:1.25; font-weight:700;}
+  .hero p{margin-top:18px; font-size:1.15rem; color:var(--cream-dark); opacity:.9;}
+  .btn-row{margin-top:36px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:3px;
+    font-weight:700; text-decoration:none; cursor:pointer; border:1px solid transparent;
+    font-family:'Tajawal',sans-serif; font-size:1rem;
+  }
+  .btn-primary{background:var(--ember); color:#fff;}
+  .btn-primary:hover{background:var(--ember-dark);}
+  .btn-outline{border-color:rgba(251,243,231,.5); color:var(--cream);}
+  .btn-outline:hover{border-color:var(--cream);}
+
+  /* STORY */
+  .story h2{font-size:2.1rem; margin-bottom:18px;}
+  .story p{color:var(--ink-soft); font-size:1.05rem; max-width:52ch;}
+  .story-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center;}
+  .stats{display:flex; }
+  .stat{flex:1; padding:0 18px; border-inline-start:1px solid var(--line);}
+  .stat:first-child{border-inline-start:none; padding-inline-start:0;}
+  .stat b{display:block; font-family:'El Messiri',serif; font-size:1.9rem; color:var(--ember);}
+  .stat span{font-size:.88rem; color:var(--ink-soft);}
+  @media(max-width:760px){
+    .story-grid{grid-template-columns:1fr;}
+    .stats{flex-wrap:wrap; row-gap:22px;}
+    .stat{flex:1 1 45%; border-inline-start:none; border-top:1px solid var(--line); padding-top:14px;}
+  }
+
+  /* MENU */
+  .menu{background:var(--cream-dark);}
+  .menu-head{text-align:center; margin-bottom:40px;}
+  .menu-head h2{font-size:2.1rem; margin-top:8px;}
+  .tabs{display:flex; justify-content:center; gap:10px; margin-bottom:44px; flex-wrap:wrap;}
+  .tab-btn{
+    padding:10px 22px; border-radius:999px; border:1px solid var(--ink); background:transparent;
+    font-family:'Tajawal',sans-serif; font-weight:700; cursor:pointer; color:var(--ink); font-size:.95rem;
+  }
+  .tab-btn.active{background:var(--ink); color:var(--cream-dark);}
+  .category{display:none;}
+  .category.active{display:block;}
+  .menu-list{max-width:680px; margin:0 auto;}
+  .menu-row{
+    display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid var(--line);
+  }
+  .menu-thumb{
+    width:56px; height:56px; border-radius:8px; overflow:hidden; flex:none;
+    background:var(--cream); display:flex; align-items:center; justify-content:center; color:var(--ink-soft);
+  }
+  .menu-thumb img{width:100%; height:100%; object-fit:cover;}
+  .menu-name{font-weight:700; font-size:1.05rem; white-space:nowrap;}
+  .menu-leader{flex:1; border-bottom:2px dotted var(--ink-soft); opacity:.5; margin:0 4px; height:0; transform:translateY(-6px);}
+  .menu-price{font-family:'El Messiri',serif; font-weight:700; color:var(--ember); white-space:nowrap; font-size:1.05rem;}
+  .row-admin{display:flex; gap:6px; margin-inline-start:8px;}
+  .add-row{text-align:center; margin-top:22px;}
+
+  /* OFFERS */
+  .offers-head{text-align:center; margin-bottom:44px;}
+  .offers-head h2{font-size:2.1rem; margin-top:8px;}
+  .offers-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  @media(max-width:760px){.offers-grid{grid-template-columns:1fr;}}
+  .offer-card{
+    position:relative; background:var(--cream); border:1px solid var(--line); border-inline-start:5px solid var(--ember);
+    border-radius:6px; padding:26px; display:flex; gap:18px;
+  }
+  .offer-photo{width:76px; height:76px; border-radius:6px; overflow:hidden; flex:none; background:var(--cream-dark); display:flex; align-items:center; justify-content:center; color:var(--ink-soft);}
+  .offer-photo img{width:100%; height:100%; object-fit:cover;}
+  .offer-title{font-family:'El Messiri',serif; font-size:1.2rem; font-weight:700;}
+  .offer-desc{color:var(--ink-soft); font-size:.95rem; margin-top:6px;}
+  .offer-price{margin-top:10px; display:inline-block; background:var(--ember); color:#fff; font-weight:700; font-size:.85rem; padding:4px 12px; border-radius:999px;}
+  .offer-admin{position:absolute; top:10px; left:10px; display:flex; gap:6px;}
+  .offers-empty{text-align:center; color:var(--ink-soft); padding:30px 0;}
+
+  /* AMBIENCE */
+  .ambience-head{text-align:center; margin-bottom:36px;}
+  .ambience-head h2{font-size:2.1rem; margin-top:8px;}
+  .gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  @media(max-width:760px){.gallery{grid-template-columns:repeat(2,1fr);}}
+  .g-tile{
+    position:relative; aspect-ratio:1/1; border-radius:8px; overflow:hidden; cursor:default;
+    background:linear-gradient(135deg,var(--cream-dark),#E4D3B4);
+    display:flex; align-items:center; justify-content:center; color:var(--ink-soft);
+  }
+  .g-tile img{width:100%; height:100%; object-fit:cover;}
+  .g-tile.editable{cursor:pointer;}
+  .g-upload-hint{
+    position:absolute; inset:0; background:rgba(27,20,15,.55); color:#fff; display:none;
+    align-items:center; justify-content:center; font-size:.85rem; text-align:center; padding:10px;
+  }
+  .g-tile.editable:hover .g-upload-hint{display:flex;}
+
+  /* CONTACT */
+  .contact{background:var(--charcoal); color:var(--cream);}
+  .contact-inner{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
+  @media(max-width:760px){.contact-inner{grid-template-columns:1fr;}}
+  .contact h2{font-size:2rem; margin-bottom:20px;}
+  .c-item{display:flex; gap:14px; margin-bottom:18px; align-items:flex-start;}
+  .c-item .ic{color:var(--gold); flex:none; margin-top:3px;}
+  .c-item b{display:block; font-size:.85rem; color:var(--gold); font-weight:700;}
+  .contact-cta{text-align:center;}
+
+  footer{background:var(--charcoal-2); color:var(--cream-dark); text-align:center; padding:26px 0; font-size:.9rem; opacity:.75;}
+
+  /* ADMIN */
+  .admin-fab{
+    position:fixed; bottom:22px; left:22px; z-index:60; width:54px; height:54px; border-radius:50%;
+    background:var(--charcoal); color:var(--gold); border:2px solid var(--gold); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+  .admin-fab.active{background:var(--gold); color:var(--charcoal);}
+  .admin-toolbar{
+    position:fixed; bottom:86px; left:22px; z-index:60; background:var(--charcoal); color:var(--cream);
+    border-radius:10px; padding:14px; display:none; flex-direction:column; gap:8px; min-width:200px;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+  .admin-toolbar.open{display:flex;}
+  .admin-toolbar button{
+    background:none; border:1px solid rgba(251,243,231,.25); color:var(--cream); padding:9px 12px;
+    border-radius:6px; cursor:pointer; font-family:'Tajawal',sans-serif; font-size:.9rem; text-align:right;
+  }
+  .admin-toolbar button:hover{border-color:var(--gold); color:var(--gold);}
+  .admin-badge{
+    position:fixed; top:12px; left:50%; transform:translateX(-50%); z-index:60; background:var(--gold);
+    color:var(--charcoal); font-weight:700; font-size:.82rem; padding:6px 16px; border-radius:999px; display:none;
+  }
+  .admin-badge.open{display:block;}
+
+  .icon-btn{
+    width:28px; height:28px; border-radius:6px; border:1px solid var(--line); background:var(--cream);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink); flex:none;
+  }
+  .icon-btn:hover{background:var(--ink); color:var(--cream);}
+  .icon-btn.danger:hover{background:#8a2b17; color:#fff; border-color:#8a2b17;}
+  .icon-btn svg{width:15px; height:15px;}
+
+  /* MODAL */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(27,20,15,.6); z-index:100; display:none;
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:var(--cream); border-radius:10px; padding:28px; max-width:420px; width:100%;
+    max-height:88vh; overflow-y:auto;
+  }
+  .modal h3{font-family:'El Messiri',serif; font-size:1.3rem; margin-bottom:18px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:.85rem; font-weight:700; margin-bottom:6px; color:var(--ink-soft);}
+  .field input[type=text], .field input[type=password], .field textarea{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px;
+    font-family:'Tajawal',sans-serif; font-size:.95rem; background:#fff; color:var(--ink);
+  }
+  .field textarea{resize:vertical; min-height:70px;}
+  .modal-actions{display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;}
+  .modal-actions .btn{padding:10px 20px; font-size:.9rem;}
+  .btn-danger{background:#8a2b17; color:#fff;}
+  .btn-ghost{background:transparent; border:1px solid var(--line); color:var(--ink);}
+  .photo-preview{width:100%; height:120px; border-radius:8px; background:var(--cream-dark); display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:10px; color:var(--ink-soft);}
+  .photo-preview img{width:100%; height:100%; object-fit:cover;}
+  .modal-note{font-size:.8rem; color:var(--ink-soft); margin-top:14px;}
+</style>
+</head>
+<body>
+
+<script type="application/json" id="site-data">
+{
+  "categories": [
+    { "id":"sandwich", "name":"السندويش والبطاطا", "items":[
+      {"id":"s1","name":"سندويش كريسبي سمون","price":"350 ل.س","photo":null},
+      {"id":"s2","name":"سندويشة فاهيتا","price":"350 ل.س","photo":null},
+      {"id":"s3","name":"سندويشة مكسيكي","price":"350 ل.س","photo":null},
+      {"id":"s4","name":"سندويش همبرغر بالدجاج","price":"250 ل.س","photo":null},
+      {"id":"s5","name":"سندويشة تشيز بطاطا","price":"180 ل.س","photo":null},
+      {"id":"s6","name":"سندويش بطاطا سمون","price":"120 ل.س","photo":null}
+    ]},
+    { "id":"shawarma", "name":"الشاورما", "items":[
+      {"id":"w1","name":"سندويش شاورما","price":"150 ل.س","photo":null},
+      {"id":"w2","name":"وجبة عربي شاورما","price":"350 ل.س","photo":null},
+      {"id":"w3","name":"كيلو شاورما فرط","price":"1700 ل.س","photo":null}
+    ]},
+    { "id":"chicken", "name":"الفروج والبروستد", "items":[
+      {"id":"c1","name":"فروج مشوي","price":"1250 ل.س","photo":null},
+      {"id":"c2","name":"فروج بروستد","price":"1300 ل.س","photo":null},
+      {"id":"c3","name":"دبوس بروستد","price":"900 ل.س","photo":null},
+      {"id":"c4","name":"جوانح بروستد","price":"800 ل.س","photo":null}
+    ]}
+  ],
+  "offers": [
+    {"id":"o1","title":"عرض العائلة","description":"فروج مشوي كامل + 4 سندويشات بطاطا + طبق سلطة + مشروبين","price":"2500 ل.س","photo":null},
+    {"id":"o2","title":"خصم وقت الغداء","description":"خصم 15% على جميع أصناف الشاورما يوميًا من 12 إلى 4 عصرًا","price":"خصم 15%","photo":null}
+  ],
+  "gallery": [
+    {"id":"g1","photo":null},
+    {"id":"g2","photo":null},
+    {"id":"g3","photo":null},
+    {"id":"g4","photo":null}
+  ]
+}
+</script>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="brand">مطعم <span>السيد عبيد</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="القائمة">&#9776;</button>
+    <ul class="links" id="navLinks">
+      <li><a href="#story">قصتنا</a></li>
+      <li><a href="#menu">قائمة الطعام</a></li>
+      <li><a href="#offers">عروضات</a></li>
+      <li><a href="#ambience">أجواء المطعم</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow" style="color:var(--gold)">مذاق أصيل منذ سنوات</div>
+    <h1>على نار هادئة، وطعم لا يُنسى</h1>
+    <p>مطعم السيد عبيد يقدّم لكم أشهى المشويات والأطباق الشرقية الأصيلة، محضّرة يوميًا بوصفات بيتنا الأولى.</p>
+    <div class="btn-row">
+      <a href="#menu" class="btn btn-primary">تصفّح القائمة</a>
+      <a href="#contact" class="btn btn-outline">احجز طاولتك</a>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story" style="padding-top:88px;">
+  <div class="wrap story-grid">
+    <div>
+      <div class="eyebrow">حكاية بدأت من فرن طيني</div>
+      <h2>18 عامًا من الأصالة في كل طبق</h2>
+      <p>افتتح السيد عبيد مطعمه الصغير قبل أن يكبر ليصبح وجهة العائلات ومحبي المأكولات الشرقية. لا نزال نطهو باللحم الطازج والتوابل المطحونة يوميًا، وننقل نفس الطعم الذي بدأ به كل شيء — من تتبيلة اللحوم إلى نار الفحم التي تُشوى عليها.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>18</b><span>عامًا من الخبرة</span></div>
+      <div class="stat"><b>+40</b><span>صنفًا في القائمة</span></div>
+      <div class="stat"><b>100%</b><span>فحم طبيعي</span></div>
+      <div class="stat"><b>7</b><span>أيام في الأسبوع</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <div class="eyebrow">مينيو مطعم السيد عبيد</div>
+      <h2>قائمة الطعام</h2>
+    </div>
+    <div class="tabs" id="tabs"></div>
+    <div id="categories"></div>
+  </div>
+</section>
+
+<section class="offers" id="offers">
+  <div class="wrap">
+    <div class="offers-head">
+      <div class="eyebrow">لا تفوّتها</div>
+      <h2>عروضاتنا</h2>
+    </div>
+    <div class="offers-grid" id="offersGrid"></div>
+    <div class="add-row" id="offerAddRow" style="display:none;">
+      <button class="btn btn-outline" style="border-color:var(--ink); color:var(--ink);" onclick="openOfferEditor(null)">+ إضافة عرض</button>
+    </div>
+  </div>
+</section>
+
+<section class="ambience" id="ambience" style="background:var(--cream-dark);">
+  <div class="wrap">
+    <div class="ambience-head">
+      <div class="eyebrow">لمحة من الداخل</div>
+      <h2>أجواء المطعم</h2>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <div class="eyebrow" style="color:var(--gold)">تواصل معنا</div>
+      <h2>لحجز طاولة أو الاستفسار عن الطلبات الخارجية</h2>
+      <div class="c-item">
+        <span class="ic">&#128205;</span>
+        <div><b>العنوان</b>دمشق، حي كشكول</div>
+      </div>
+      <div class="c-item">
+        <span class="ic">&#128222;</span>
+        <div><b>الهاتف</b>0947025355</div>
+      </div>
+      <div class="c-item">
+        <span class="ic">&#128337;</span>
+        <div><b>مواعيد العمل</b>يوميًا من 9 صباحًا حتى 3 بعد منتصف الليل</div>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <a href="tel:0947025355" class="btn btn-primary" style="font-size:1.1rem; padding:18px 40px;">اتصل الآن</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 مطعم السيد عبيد. جميع الحقوق محفوظة.</footer>
+
+<!-- ADMIN UI -->
+<div class="admin-badge" id="adminBadge">وضع التحكم مفعّل</div>
+<button class="admin-fab" id="adminFab" title="لوحة التحكم" aria-label="لوحة التحكم">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33h.05A1.65 1.65 0 0010 3.09V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51h.05a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82v.05a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+</button>
+<div class="admin-toolbar" id="adminToolbar">
+  <button onclick="exportSite()">⬇ تصدير الملف للنشر</button>
+  <button onclick="logout()">تسجيل الخروج</button>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <h3>دخول لوحة التحكم</h3>
+    <div class="field">
+      <label>كلمة المرور</label>
+      <input type="password" id="loginPw" placeholder="ادخل كلمة المرور">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="tryLogin()">دخول</button>
+      <button class="btn btn-ghost" onclick="closeModal('loginModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- ITEM EDITOR MODAL -->
+<div class="modal-overlay" id="itemModal">
+  <div class="modal">
+    <h3 id="itemModalTitle">تعديل الصنف</h3>
+    <div class="photo-preview" id="itemPhotoPreview">لا توجد صورة</div>
+    <div class="field">
+      <label>الصورة</label>
+      <input type="file" id="itemPhotoInput" accept="image/*">
+    </div>
+    <div class="field">
+      <label>اسم الصنف</label>
+      <input type="text" id="itemName">
+    </div>
+    <div class="field">
+      <label>السعر</label>
+      <input type="text" id="itemPrice" placeholder="مثال: 350 ل.س">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="saveItem()">حفظ</button>
+      <button class="btn btn-danger" id="itemDeleteBtn" onclick="deleteItem()">حذف</button>
+      <button class="btn btn-ghost" onclick="closeModal('itemModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- OFFER EDITOR MODAL -->
+<div class="modal-overlay" id="offerModal">
+  <div class="modal">
+    <h3 id="offerModalTitle">تعديل العرض</h3>
+    <div class="photo-preview" id="offerPhotoPreview">لا توجد صورة</div>
+    <div class="field">
+      <label>الصورة</label>
+      <input type="file" id="offerPhotoInput" accept="image/*">
+    </div>
+    <div class="field">
+      <label>عنوان العرض</label>
+      <input type="text" id="offerTitle">
+    </div>
+    <div class="field">
+      <label>التفاصيل</label>
+      <textarea id="offerDesc"></textarea>
+    </div>
+    <div class="field">
+      <label>السعر / نسبة الخصم</label>
+      <input type="text" id="offerPrice" placeholder="مثال: 2500 ل.س أو خصم 15%">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="saveOffer()">حفظ</button>
+      <button class="btn btn-danger" id="offerDeleteBtn" onclick="deleteOffer()">حذف</button>
+      <button class="btn btn-ghost" onclick="closeModal('offerModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var ADMIN_PASSWORD = "obaid2026"; // غيّر كلمة المرور من هنا قبل رفع الملف للاستضافة
+
+  var isAdmin = false;
+  var siteData;
+  try { siteData = JSON.parse(document.getElementById('site-data').textContent); }
+  catch(e){ siteData = {categories:[],offers:[],gallery:[]}; }
+
+  var savedLocal = null;
+  try { savedLocal = localStorage.getItem('alsayedObaidData'); } catch(e){}
+  if (savedLocal) { try { siteData = JSON.parse(savedLocal); } catch(e){} }
+
+  var activeCategory = siteData.categories.length ? siteData.categories[0].id : null;
+  var editingItemCat = null, editingItemId = null, editingItemPhoto = null;
+  var editingOfferId = null, editingOfferPhoto = null;
+
+  function uid(prefix){ return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+  function persist(){
+    try { localStorage.setItem('alsayedObaidData', JSON.stringify(siteData)); } catch(e){}
+    document.getElementById('site-data').textContent = JSON.stringify(siteData, null, 2);
+  }
+
+  function iconSvg(name){
+    var icons = {
+      pencil: '<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>',
+      trash: '<polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>',
+      plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
+      camera: '<path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/>'
+    };
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+icons[name]+'</svg>';
+  }
+
+  /* ---------- RENDER ---------- */
+  function renderAll(){
+    renderTabs();
+    renderCategories();
+    renderOffers();
+    renderGallery();
+    document.getElementById('adminFab').className = 'admin-fab' + (isAdmin ? ' active' : '');
+    document.getElementById('adminBadge').className = 'admin-badge' + (isAdmin ? ' open' : '');
+  }
+
+  function renderTabs(){
+    var tabs = document.getElementById('tabs');
+    tabs.innerHTML = '';
+    siteData.categories.forEach(function(cat){
+      var b = document.createElement('button');
+      b.className = 'tab-btn' + (cat.id === activeCategory ? ' active' : '');
+      b.textContent = cat.name;
+      b.onclick = function(){ activeCategory = cat.id; renderTabs(); renderCategories(); };
+      tabs.appendChild(b);
+    });
+  }
+
+  function renderCategories(){
+    var wrap = document.getElementById('categories');
+    wrap.innerHTML = '';
+    siteData.categories.forEach(function(cat){
+      var div = document.createElement('div');
+      div.className = 'category' + (cat.id === activeCategory ? ' active' : '');
+      var list = document.createElement('div');
+      list.className = 'menu-list';
+      cat.items.forEach(function(item){
+        list.appendChild(menuRow(cat.id, item));
+      });
+      div.appendChild(list);
+      if (isAdmin){
+        var addRow = document.createElement('div');
+        addRow.className = 'add-row';
+        var addBtn = document.createElement('button');
+        addBtn.className = 'btn btn-outline';
+        addBtn.style.borderColor = 'var(--ink)'; addBtn.style.color = 'var(--ink)';
+        addBtn.textContent = '+ إضافة صنف';
+        addBtn.onclick = function(){ openItemEditor(cat.id, null); };
+        addRow.appendChild(addBtn);
+        div.appendChild(addRow);
+      }
+      wrap.appendChild(div);
+    });
+  }
+
+  function menuRow(catId, item){
+    var row = document.createElement('div');
+    row.className = 'menu-row';
+
+    var thumb = document.createElement('div');
+    thumb.className = 'menu-thumb';
+    thumb.innerHTML = item.photo ? '<img src="'+item.photo+'" alt="">' : iconSvg('camera');
+    row.appendChild(thumb);
+
+    var name = document.createElement('div');
+    name.className = 'menu-name';
+    name.textContent = item.name;
+    row.appendChild(name);
+
+    var leader = document.createElement('div');
+    leader.className = 'menu-leader';
+    row.appendChild(leader);
+
+    var price = document.createElement('div');
+    price.className = 'menu-price';
+    price.textContent = item.price;
+    row.appendChild(price);
+
+    if (isAdmin){
+      var admin = document.createElement('div');
+      admin.className = 'row-admin';
+      var editBtn = document.createElement('button');
+      editBtn.className = 'icon-btn'; editBtn.innerHTML = iconSvg('pencil');
+      editBtn.onclick = function(){ openItemEditor(catId, item.id); };
+      admin.appendChild(editBtn);
+      row.appendChild(admin);
+    }
+    return row;
+  }
+
+  function renderOffers(){
+    var grid = document.getElementById('offersGrid');
+    grid.innerHTML = '';
+    if (!siteData.offers.length){
+      var empty = document.createElement('div');
+      empty.className = 'offers-empty';
+      empty.textContent = 'لا توجد عروضات حاليًا.';
+      grid.appendChild(empty);
+    }
+    siteData.offers.forEach(function(offer){
+      var card = document.createElement('div');
+      card.className = 'offer-card';
+
+      var photo = document.createElement('div');
+      photo.className = 'offer-photo';
+      photo.innerHTML = offer.photo ? '<img src="'+offer.photo+'" alt="">' : iconSvg('camera');
+      card.appendChild(photo);
+
+      var body = document.createElement('div');
+      body.innerHTML = '<div class="offer-title">'+escapeHtml(offer.title)+'</div>'+
+                        '<div class="offer-desc">'+escapeHtml(offer.description)+'</div>'+
+                        '<span class="offer-price">'+escapeHtml(offer.price)+'</span>';
+      card.appendChild(body);
+
+      if (isAdmin){
+        var admin = document.createElement('div');
+        admin.className = 'offer-admin';
+        var editBtn = document.createElement('button');
+        editBtn.className = 'icon-btn'; editBtn.innerHTML = iconSvg('pencil');
+        editBtn.onclick = function(){ openOfferEditor(offer.id); };
+        admin.appendChild(editBtn);
+        card.appendChild(admin);
+      }
+      grid.appendChild(card);
+    });
+    document.getElementById('offerAddRow').style.display = isAdmin ? 'block' : 'none';
+  }
+
+  function renderGallery(){
+    var g = document.getElementById('gallery');
+    g.innerHTML = '';
+    siteData.gallery.forEach(function(tile){
+      var el = document.createElement('div');
+      el.className = 'g-tile' + (isAdmin ? ' editable' : '');
+      if (tile.photo){
+        el.innerHTML = '<img src="'+tile.photo+'" alt="">';
+      } else {
+        el.innerHTML = iconSvg('camera');
+      }
+      if (isAdmin){
+        var hint = document.createElement('div');
+        hint.className = 'g-upload-hint';
+        hint.textContent = 'اضغط لتغيير الصورة';
+        el.appendChild(hint);
+        el.onclick = function(){ uploadGalleryPhoto(tile.id); };
+      }
+      g.appendChild(el);
+    });
+  }
+
+  function escapeHtml(str){
+    var d = document.createElement('div'); d.textContent = str == null ? '' : str; return d.innerHTML;
+  }
+
+  /* ---------- GALLERY UPLOAD ---------- */
+  function uploadGalleryPhoto(tileId){
+    var input = document.createElement('input');
+    input.type = 'file'; input.accept = 'image/*';
+    input.onchange = function(){
+      var file = input.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e){
+        var tile = siteData.gallery.find(function(t){ return t.id === tileId; });
+        if (tile){ tile.photo = e.target.result; persist(); renderGallery(); }
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  }
+
+  /* ---------- ITEM EDITOR ---------- */
+  window.openItemEditor = function(catId, itemId){
+    editingItemCat = catId; editingItemId = itemId; editingItemPhoto = null;
+    var cat = siteData.categories.find(function(c){ return c.id === catId; });
+    var item = itemId ? cat.items.find(function(i){ return i.id === itemId; }) : null;
+    document.getElementById('itemModalTitle').textContent = itemId ? 'تعديل الصنف' : 'إضافة صنف جديد';
+    document.getElementById('itemName').value = item ? item.name : '';
+    document.getElementById('itemPrice').value = item ? item.price : '';
+    document.getElementById('itemPhotoInput').value = '';
+    editingItemPhoto = item ? item.photo : null;
+    updatePhotoPreview('itemPhotoPreview', editingItemPhoto);
+    document.getElementById('itemDeleteBtn').style.display = itemId ? 'inline-flex' : 'none';
+    openModal('itemModal');
+  };
+
+  document.getElementById('itemPhotoInput').addEventListener('change', function(){
+    var file = this.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(e){ editingItemPhoto = e.target.result; updatePhotoPreview('itemPhotoPreview', editingItemPhoto); };
+    reader.readAsDataURL(file);
+  });
+
+  window.saveItem = function(){
+    var name = document.getElementById('itemName').value.trim();
+    var price = document.getElementById('itemPrice').value.trim();
+    if (!name || !price){ alert('الرجاء إدخال اسم الصنف والسعر'); return; }
+    var cat = siteData.categories.find(function(c){ return c.id === editingItemCat; });
+    if (editingItemId){
+      var item = cat.items.find(function(i){ return i.id === editingItemId; });
+      item.name = name; item.price = price; item.photo = editingItemPhoto;
+    } else {
+      cat.items.push({ id: uid('i'), name: name, price: price, photo: editingItemPhoto });
+    }
+    persist(); renderCategories(); closeModal('itemModal');
+  };
+
+  window.deleteItem = function(){
+    if (!editingItemId) return;
+    if (!confirm('حذف هذا الصنف؟')) return;
+    var cat = siteData.categories.find(function(c){ return c.id === editingItemCat; });
+    cat.items = cat.items.filter(function(i){ return i.id !== editingItemId; });
+    persist(); renderCategories(); closeModal('itemModal');
+  };
+
+  /* ---------- OFFER EDITOR ---------- */
+  window.openOfferEditor = function(offerId){
+    editingOfferId = offerId; editingOfferPhoto = null;
+    var offer = offerId ? siteData.offers.find(function(o){ return o.id === offerId; }) : null;
+    document.getElementById('offerModalTitle').textContent = offerId ? 'تعديل العرض' : 'إضافة عرض جديد';
+    document.getElementById('offerTitle').value = offer ? offer.title : '';
+    document.getElementById('offerDesc').value = offer ? offer.description : '';
+    document.getElementById('offerPrice').value = offer ? offer.price : '';
+    document.getElementById('offerPhotoInput').value = '';
+    editingOfferPhoto = offer ? offer.photo : null;
+    updatePhotoPreview('offerPhotoPreview', editingOfferPhoto);
+    document.getElementById('offerDeleteBtn').style.display = offerId ? 'inline-flex' : 'none';
+    openModal('offerModal');
+  };
+
+  document.getElementById('offerPhotoInput').addEventListener('change', function(){
+    var file = this.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(e){ editingOfferPhoto = e.target.result; updatePhotoPreview('offerPhotoPreview', editingOfferPhoto); };
+    reader.readAsDataURL(file);
+  });
+
+  window.saveOffer = function(){
+    var title = document.getElementById('offerTitle').value.trim();
+    var desc = document.getElementById('offerDesc').value.trim();
+    var price = document.getElementById('offerPrice').value.trim();
+    if (!title || !price){ alert('الرجاء إدخال عنوان العرض والسعر'); return; }
+    if (editingOfferId){
+      var offer = siteData.offers.find(function(o){ return o.id === editingOfferId; });
+      offer.title = title; offer.description = desc; offer.price = price; offer.photo = editingOfferPhoto;
+    } else {
+      siteData.offers.push({ id: uid('o'), title: title, description: desc, price: price, photo: editingOfferPhoto });
+    }
+    persist(); renderOffers(); closeModal('offerModal');
+  };
+
+  window.deleteOffer = function(){
+    if (!editingOfferId) return;
+    if (!confirm('حذف هذا العرض؟')) return;
+    siteData.offers = siteData.offers.filter(function(o){ return o.id !== editingOfferId; });
+    persist(); renderOffers(); closeModal('offerModal');
+  };
+
+  function updatePhotoPreview(elId, src){
+    var el = document.getElementById(elId);
+    el.innerHTML = src ? '<img src="'+src+'" alt="">' : 'لا توجد صورة';
+  }
+
+  /* ---------- MODALS ---------- */
+  window.openModal = function(id){ document.getElementById(id).className = 'modal-overlay open'; };
+  window.closeModal = function(id){ document.getElementById(id).className = 'modal-overlay'; };
+  window.closeAllModals = function(){
+    ['loginModal','itemModal','offerModal'].forEach(function(id){ closeModal(id); });
+    document.getElementById('adminToolbar').className = 'admin-toolbar';
+  };
+
+  /* ---------- AUTH ---------- */
+  window.tryLogin = function(){
+    var pw = document.getElementById('loginPw').value;
+    if (pw === ADMIN_PASSWORD){
+      isAdmin = true;
+      document.getElementById('loginPw').value = '';
+      closeModal('loginModal');
+      renderAll();
+    } else {
+      alert('كلمة المرور غير صحيحة');
+    }
+  };
+
+  window.logout = function(){
+    isAdmin = false;
+    document.getElementById('adminToolbar').className = 'admin-toolbar';
+    renderAll();
+  };
+
+  /* ---------- EXPORT ---------- */
+  window.exportSite = function(){
+    closeAllModals();
+    persist();
+    var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+  };
+
+  /* ---------- FAB / TOOLBAR ---------- */
+  document.getElementById('adminFab').addEventListener('click', function(){
+    if (!isAdmin){
+      openModal('loginModal');
+    } else {
+      var tb = document.getElementById('adminToolbar');
+      tb.className = 'admin-toolbar' + (tb.className.indexOf('open') === -1 ? ' open' : '');
+    }
+  });
+
+  document.getElementById('loginPw').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') tryLogin();
+  });
+
+  document.getElementById('navToggle').addEventListener('click', function(){
+    var nav = document.getElementById('navLinks');
+    nav.className = 'links' + (nav.className.indexOf('open') === -1 ? ' open' : '');
+  });
+
+  document.querySelectorAll('.modal-overlay').forEach(function(ov){
+    ov.addEventListener('click', function(e){ if (e.target === ov) ov.className = 'modal-overlay'; });
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
